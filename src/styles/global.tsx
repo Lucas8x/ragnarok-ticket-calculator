@@ -9,13 +9,16 @@ export const GlobalStyles = createGlobalStyle`
     //font-family: 'Nunito', sans-serif;
     //font-family: 'Roboto', sans-serif;
   }
+
   a {
     text-decoration: none;
   }
+
   button, input {
     outline: 0;
     border: 0;
   }
+
   button {
     cursor: pointer;
   }
