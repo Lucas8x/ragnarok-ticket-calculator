@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 
-import { IInputsData } from '../../interfaces';
+import { IFormData } from '../../interfaces';
 import { Input } from '../Input';
-import { Container } from './styles';
+import { Container, Group, Error } from './styles';
 
 interface FormProps {
-  onChangeInputs: (obj: IInputsData) => void;
+  onChangeInputs: (data: IFormData) => void;
+  error: string;
 }
 
-export function Form({ onChangeInputs }: FormProps) {
+export function Form({ onChangeInputs, error }: FormProps) {
   const [lastModified, setLastModified] = useState('');
 
   const [rops, setRops] = useState('');
@@ -19,15 +20,16 @@ export function Form({ onChangeInputs }: FormProps) {
   const [ticketZeny, setTicketZeny] = useState('');
 
   useEffect(() => {
-    onChangeInputs({
-      rops,
-      wp,
-      tickets,
-      money,
-      zeny,
-      ticketZeny,
+    const data = {
+      rops: Number(rops) || 0,
+      wp: Number(wp) || 0,
+      tickets: Number(tickets) || 0,
+      money: Number(money) || 0,
+      zeny: Number(zeny) || 0,
+      ticketZeny: Number(ticketZeny) || 0,
       lastModified,
-    });
+    };
+    onChangeInputs(data);
   }, [
     rops,
     wp,
@@ -41,10 +43,12 @@ export function Form({ onChangeInputs }: FormProps) {
 
   return (
     <Container>
+      {error && <Error>{`> ! ${error} ! <`}</Error>}
       <Input
         id='rops'
         type='number'
         step={'1'}
+        min={'0'}
         placeholder='rops'
         label='Quantos ROPs deseja comprar?'
         onChange={(e) => {
@@ -56,6 +60,7 @@ export function Form({ onChangeInputs }: FormProps) {
         id='wp'
         type='number'
         step={'1'}
+        min={'0'}
         placeholder='wp'
         label='Quantos WP deseja comprar?'
         onChange={(e) => {
@@ -67,6 +72,7 @@ export function Form({ onChangeInputs }: FormProps) {
         id='tickets'
         type='number'
         step={'1'}
+        min={'0'}
         placeholder='tickets'
         label='Quantos tickets deseja comprar?'
         onChange={(e) => {
@@ -78,6 +84,7 @@ export function Form({ onChangeInputs }: FormProps) {
         id='money'
         type='number'
         step='any'
+        min={'0'}
         placeholder='R$'
         label='Quantos R$ deseja gastar?'
         onChange={(e) => {
@@ -85,28 +92,32 @@ export function Form({ onChangeInputs }: FormProps) {
           setMoney(e.target.value);
         }}
       />
-      <Input
-        id='zeny'
-        type='number'
-        step='any'
-        placeholder='zeny'
-        label='Quantos zenys você pretende ganhar?'
-        onChange={(e) => {
-          setLastModified('zeny');
-          setZeny(e.target.value);
-        }}
-      />
-      <Input
-        id='ticketZeny'
-        type='number'
-        step='any'
-        placeholder='ticket -> zeny'
-        label='Quanto está valendo o ticket em zeny?'
-        onChange={(e) => {
-          setLastModified('ticketZeny');
-          setTicketZeny(e.target.value);
-        }}
-      />
+      <Group>
+        <Input
+          id='zeny'
+          type='number'
+          step='any'
+          min={'0'}
+          placeholder='zeny'
+          label='Quantos zenys você pretende ganhar?'
+          onChange={(e) => {
+            setLastModified('zeny');
+            setZeny(e.target.value);
+          }}
+        />
+        <Input
+          id='ticketZeny'
+          type='number'
+          step='any'
+          min={'0'}
+          placeholder='ticket -> zeny'
+          label='Quanto está valendo o ticket em zeny?'
+          onChange={(e) => {
+            setLastModified('ticketZeny');
+            setTicketZeny(e.target.value);
+          }}
+        />
+      </Group>
     </Container>
   );
 }

@@ -1,19 +1,18 @@
-export interface IInputsData {
-  rops: string;
-  wp: string;
-  tickets: string;
-  money: string;
-  zeny: string;
-  ticketZeny: string;
+export interface IFormData {
+  rops: number;
+  wp: number;
+  tickets: number;
+  money: number;
+  zeny: number;
   lastModified: string;
 }
 
-export interface WpPrices {
+export interface IWpPrices {
   wp: number;
   price: number;
 }
 
-export interface WpRops {
+export interface IWpRops {
   wp: number;
   rops: number;
 }

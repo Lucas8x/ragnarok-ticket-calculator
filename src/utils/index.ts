@@ -1,4 +1,4 @@
-import { WpPrices, WpRops } from '../interfaces';
+import { IWpPrices, IWpRops } from '../interfaces';
 
 import {
   WP_PRICES,
@@ -7,4 +7,22 @@ import {
   PIN_BONUS,
 } from '../data/values.json';
 
-//function getWpByAmount(wp: number, invert = false): Array<WpPrices> {}
+export function getWpByAmount(wp: number, invert = false): Array<IWpPrices> {
+  const filteredWp = WP_PRICES.filter((item: IWpPrices) => item.wp <= wp);
+  return !invert ? filteredWp : filteredWp.reverse();
+}
+
+export function getWpByPrice(price: number): Array<IWpPrices> {
+  const filteredWp = WP_PRICES.filter((item: IWpPrices) => item.price <= price);
+  return filteredWp;
+}
+
+export function getRopsByAmount(rops: number): Array<IWpRops> {
+  const filteredRops = WP_TO_ROPS.filter((item: IWpRops) => item.rops <= rops);
+  return filteredRops;
+}
+
+export function getRopsByWp(wp: number): Array<IWpRops> {
+  const filteredRops = WP_TO_ROPS.filter((item: IWpRops) => item.wp <= wp);
+  return filteredRops;
+}

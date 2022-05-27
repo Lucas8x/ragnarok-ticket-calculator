@@ -1,17 +1,12 @@
 import Head from 'next/head';
-import { useState } from 'react';
 
 import { LeftSidebar } from '../../components/LeftSidebar';
 import { RightSidebar } from '../../components/RightSidebar';
 import { Header } from '../../components/Header';
-import { Form } from '../../components/Form';
-import { ResultTable } from '../../components/Result';
-import { Container, Center, Main } from './styles';
-import { IInputsData } from '../../interfaces';
+import { Calculator } from '../../components/Calculator';
+import { Container, Center } from './styles';
 
 export function Home() {
-  const [data, setData] = useState<IInputsData>();
-
   return (
     <>
       <Head>
@@ -23,10 +18,7 @@ export function Home() {
 
         <Center>
           <Header />
-          <Main>
-            <Form onChangeInputs={setData} />
-            <ResultTable data={data} />
-          </Main>
+          <Calculator />
         </Center>
 
         <RightSidebar />
