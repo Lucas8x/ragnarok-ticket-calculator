@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react';
 
 import { IFormData } from '../../interfaces';
 import { Input } from '../Input';
-import { Container, Group, Error } from './styles';
+import { Container, Group, Top, Error, XIcon, ClearButton } from './styles';
 
 interface FormProps {
   onChangeInputs: (data: IFormData) => void;
   error: string;
+  onClear: () => void;
 }
 
-export function Form({ onChangeInputs, error }: FormProps) {
+export function Form({ onChangeInputs, error, onClear }: FormProps) {
   const [lastModified, setLastModified] = useState('');
 
   const [rops, setRops] = useState('');
@@ -18,6 +19,17 @@ export function Form({ onChangeInputs, error }: FormProps) {
   const [money, setMoney] = useState('');
   const [zeny, setZeny] = useState('');
   const [ticketZeny, setTicketZeny] = useState('');
+
+  function clearInputs() {
+    console.log('limpando');
+    setRops('');
+    setWp('');
+    setTickets('');
+    setMoney('');
+    setZeny('');
+    setTicketZeny('');
+    onClear();
+  }
 
   useEffect(() => {
     const data = {
@@ -43,11 +55,17 @@ export function Form({ onChangeInputs, error }: FormProps) {
 
   return (
     <Container>
-      {error && <Error>{`> ! ${error} ! <`}</Error>}
+      <Top>
+        {error && <Error>{`> ! ${error} ! <`}</Error>}
+        {/* <ClearButton onClick={clearInputs}>
+          <XIcon />
+          Limpar
+        </ClearButton> */}
+      </Top>
       <Input
         id='rops'
         type='number'
-        step={'1'}
+        step={'1000'}
         min={'0'}
         placeholder='rops'
         label='Quantos ROPs deseja comprar?'
@@ -59,7 +77,7 @@ export function Form({ onChangeInputs, error }: FormProps) {
       <Input
         id='wp'
         type='number'
-        step={'1'}
+        step={'1000'}
         min={'0'}
         placeholder='wp'
         label='Quantos WP deseja comprar?'
@@ -108,7 +126,7 @@ export function Form({ onChangeInputs, error }: FormProps) {
         <Input
           id='ticketZeny'
           type='number'
-          step='any'
+          step='1'
           min={'0'}
           placeholder='ticket -> zeny'
           label='Quanto está valendo o ticket em zeny?'

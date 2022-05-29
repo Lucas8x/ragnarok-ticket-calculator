@@ -1,10 +1,11 @@
 export interface IFormData {
-  rops: number;
-  wp: number;
-  tickets: number;
-  money: number;
-  zeny: number;
-  lastModified: string;
+  rops?: number;
+  wp?: number;
+  tickets?: number;
+  money?: number;
+  zeny?: number;
+  ticketZeny?: number;
+  lastModified?: string;
 }
 
 export interface IWpPrices {

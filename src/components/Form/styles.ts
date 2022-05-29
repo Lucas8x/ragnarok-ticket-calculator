@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { X } from '@styled-icons/feather';
 
 export const Container = styled.div`
   display: flex;
@@ -27,7 +28,28 @@ export const Group = styled.div`
   padding: 15px 15px 25px 0;*/
 `;
 
+export const Top = styled.div`
+  display: flex;
+`;
+
 export const Error = styled.span`
   color: red;
   font-weight: 500;
+`;
+
+export const XIcon = styled(X)`
+  width: 25px;
+  height: 25px;
+  color: white;
+`;
+
+export const ClearButton = styled.button`
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+
+  font-size: medium;
+
+  color: white;
+  background: none;
 `;
