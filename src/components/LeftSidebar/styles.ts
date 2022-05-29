@@ -8,6 +8,7 @@ export const Container = styled.div`
   justify-content: flex-end;
 
   width: 75px;
+  height: 100vh;
 
   border-right: 1px solid #fff;
   background-color: ${({ theme }) => theme.colors.secondary};

@@ -6,9 +6,15 @@ export const Container = styled.div`
   align-items: center;
 
   width: 75px;
+  height: 100vh;
 
   border-left: 1px solid #fff;
   background-color: ${({ theme }) => theme.colors.secondary};
+`;
+
+export const SwitchButton = styled.button`
+  margin-top: 20px;
+  background: none;
 
   > svg {
     width: 25px;
