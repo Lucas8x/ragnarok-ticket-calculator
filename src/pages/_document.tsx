@@ -39,28 +39,41 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel='shortcut icon' href='favicon.png' type='image/png' />
+          <meta name='application-name' content='RO Ticket Calculator' />
+          <link rel='manifest' href='/manifest.json' />
+          <meta
+            name='description'
+            content='ragnarok promotional ticket calculator'
+          />
+          <meta
+            name='keywords'
+            content='ragnarok promotional ticket calculator'
+          />
+          <meta name='theme-color' content='#1B1C1D' />
+          {/* FONTS */}
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
             href='https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap'
             rel='stylesheet'
           />
+          {/* ICONS */}
+          <link rel='shortcut icon' href='favicon.png' type='image/png' />
           <link
             rel='apple-touch-icon'
             sizes='180x180'
-            href='/apple-touch-icon.png'
+            href='/icons/apple-touch-icon.png'
           />
           <link
             rel='icon'
             type='image/png'
             sizes='32x32'
-            href='/favicon-32x32.png'
+            href='/icons/favicon-32x32.png'
           />
           <link
             rel='icon'
             type='image/png'
             sizes='16x16'
-            href='/favicon-16x16.png'
+            href='/icons/favicon-16x16.png'
           />
         </Head>
         <body>
