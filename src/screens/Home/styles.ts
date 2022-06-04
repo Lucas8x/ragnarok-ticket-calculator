@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mobile } from '../../utils/media';
 
 export const Container = styled.main`
   display: flex;
@@ -17,4 +18,9 @@ export const Center = styled.div`
   width: 100%;
   gap: 20px;
   padding: 0 20px 0;
+
+  ${mobile(`
+    gap: 0;
+    padding: 0;
+  `)}
 `;

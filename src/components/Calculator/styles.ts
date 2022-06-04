@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mobile } from '../../utils/media';
 
 export const Main = styled.main`
   display: flex;
@@ -15,5 +16,17 @@ export const Main = styled.main`
 
   > div:last-child {
     padding-left: 40px;
+
+    ${mobile(`
+      padding-left: 0;
+    `)}
   }
+
+  ${mobile(`
+    flex-direction: column;
+    padding: 0 15px;
+    background: none;
+    gap: 20px;
+    margin-bottom: 40px;
+  `)}
 `;

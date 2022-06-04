@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { phone } from '../../utils/media';
 
 export const Container = styled.div`
   display: flex;
@@ -8,10 +9,14 @@ export const Container = styled.div`
   justify-content: flex-end;
 
   width: 75px;
-  height: 100vh;
+  height: auto;
 
   border-right: 1px solid #fff;
   background-color: ${({ theme }) => theme.colors.secondary};
+
+  ${phone(`
+    display: none;
+  `)}
 `;
 
 export const GithubLink = styled.a`

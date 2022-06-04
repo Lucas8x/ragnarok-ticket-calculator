@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 import { X } from '@styled-icons/feather';
 
+import { mobile } from '../../utils/media';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
   width: 50%;
   gap: 25px;
-  padding-right: 150px;
+  padding-right: 125px;
+
+  ${mobile(`
+    width: 100%;
+    gap: 20px;
+    padding-right: 0;
+  `)}
 `;
 
 export const Group = styled.div`

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { phone } from '../../utils/media';
 
 export const Container = styled.div`
   display: flex;
@@ -6,10 +7,14 @@ export const Container = styled.div`
   align-items: center;
 
   width: 75px;
-  height: 100vh;
+  height: auto;
 
   border-left: 1px solid #fff;
   background-color: ${({ theme }) => theme.colors.secondary};
+
+  ${phone(`
+    display: none;
+  `)}
 `;
 
 export const SwitchButton = styled.button`
