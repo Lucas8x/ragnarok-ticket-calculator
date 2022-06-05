@@ -7,9 +7,9 @@ import {
   PIN_BONUS,
 } from '../data/values.json';
 
-export function getWpByAmount(wp: number, invert = false): Array<IWpPrices> {
-  const filteredWp = WP_PRICES.filter((item: IWpPrices) => item.wp <= wp);
-  return !invert ? filteredWp : filteredWp.reverse();
+export function getWpByAmount(wp: number): Array<IWpPrices> {
+  const filteredWp = WP_PRICES.filter((item: IWpPrices) => item.wp >= wp);
+  return filteredWp;
 }
 
 export function getWpByPrice(price: number): Array<IWpPrices> {
@@ -18,11 +18,11 @@ export function getWpByPrice(price: number): Array<IWpPrices> {
 }
 
 export function getRopsByAmount(rops: number): Array<IWpRops> {
-  const filteredRops = WP_TO_ROPS.filter((item: IWpRops) => item.rops <= rops);
+  const filteredRops = WP_TO_ROPS.filter((item: IWpRops) => item.rops >= rops);
   return filteredRops;
 }
 
 export function getRopsByWp(wp: number): Array<IWpRops> {
-  const filteredRops = WP_TO_ROPS.filter((item: IWpRops) => item.wp <= wp);
+  const filteredRops = WP_TO_ROPS.filter((item: IWpRops) => item.wp >= wp);
   return filteredRops;
 }

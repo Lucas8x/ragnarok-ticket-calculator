@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { Form } from '../Form';
 import { ResultTable } from '../Result';
 import { IFormData } from '../../interfaces';
-import { TICKET_PRICE, WP_TO_ROPS, WP_PRICES } from '../../data/values.json';
+import { TICKET_PRICE, WP_TO_ROPS } from '../../data/values.json';
 import {
   getWpByAmount,
   getWpByPrice,
@@ -22,7 +22,7 @@ export function Calculator() {
     const rops = data?.rops;
     if (!rops) return;
 
-    const possibleRops = WP_TO_ROPS.filter((i) => i.rops >= rops);
+    const possibleRops = getRopsByAmount(rops);
     const minRops = possibleRops[0];
 
     if (!minRops) {
@@ -34,7 +34,7 @@ export function Calculator() {
     const maxTickets = Math.floor(minRops.rops / TICKET_PRICE);
     const wp = minRops.wp;
 
-    const possibleMoney = WP_PRICES.filter((i) => i.wp >= wp);
+    const possibleMoney = getWpByAmount(wp);
     const minPrice = possibleMoney[0]?.price;
 
     setResult({
@@ -50,13 +50,13 @@ export function Calculator() {
     const wp = data?.wp;
     if (!wp) return;
 
-    const possibleWp = WP_PRICES.filter((i) => i.wp >= wp);
+    const possibleWp = getWpByAmount(wp);
     const minWp = possibleWp[0];
 
     if (!minWp) return;
     else setError('');
 
-    const possibleRops = WP_TO_ROPS.filter((i) => i.wp >= wp);
+    const possibleRops = getRopsByWp(wp);
     const minRops = possibleRops[0];
     const rops = minRops.rops;
 
@@ -76,11 +76,11 @@ export function Calculator() {
     if (!tickets || tickets <= 0) return;
 
     const requiredRops = tickets * TICKET_PRICE;
-    const possibleRops = WP_TO_ROPS.filter((i) => i.rops >= requiredRops);
+    const possibleRops = getRopsByAmount(requiredRops);
     const minRops = possibleRops[0];
     if (!minRops) return;
 
-    const possibleMoney = WP_PRICES.filter((i) => i.wp >= minRops.wp);
+    const possibleMoney = getWpByAmount(minRops.wp);
     const minPrice = possibleMoney[0]?.price;
 
     const maxTickets = Math.floor(minRops.rops / TICKET_PRICE);
@@ -98,14 +98,14 @@ export function Calculator() {
     const money = data?.money;
     if (!money) return;
 
-    const possibleMoney = WP_PRICES.filter((i) => i.price <= money);
+    const possibleMoney = getWpByPrice(money);
     if (!possibleMoney) return;
 
     const minMoney = possibleMoney[possibleMoney.length - 1];
     if (!minMoney) return;
     const { price, wp } = minMoney;
 
-    const possibleRops = WP_TO_ROPS.filter((i) => i.wp >= wp);
+    const possibleRops = getRopsByWp(wp);
     const { rops } = possibleRops[0];
 
     const maxTickets = Math.floor(rops / TICKET_PRICE);
@@ -127,12 +127,12 @@ export function Calculator() {
     const tickets = Math.ceil(zeny / ticketZeny);
     const requiredRops = tickets * TICKET_PRICE;
 
-    const possibleRops = WP_TO_ROPS.filter((i) => i.rops >= requiredRops);
+    const possibleRops = getRopsByAmount(requiredRops);
     const minRops = possibleRops[0];
     if (!minRops) return;
     const { rops, wp } = minRops;
 
-    const possibleMoney = WP_PRICES.filter((i) => i.wp >= wp);
+    const possibleMoney = getWpByAmount(wp);
     const minPrice = possibleMoney[0]?.price;
 
     setResult({
