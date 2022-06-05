@@ -131,7 +131,6 @@ export function Form({ onChangeInputs, error, onClear }: FormProps) {
           placeholder='ticket -> zeny'
           label='Quanto está valendo o ticket em zeny?'
           onChange={(e) => {
-            setLastModified('ticketZeny');
             setTicketZeny(e.target.value);
           }}
         />

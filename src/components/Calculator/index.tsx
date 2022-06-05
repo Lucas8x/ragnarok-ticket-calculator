@@ -90,7 +90,7 @@ export function Calculator() {
       wp: minRops.wp,
       tickets: maxTickets,
       money: minPrice,
-      ...(data?.ticketZeny && { zeny: tickets * data.ticketZeny }),
+      ...(data?.ticketZeny && { zeny: maxTickets * data.ticketZeny }),
     });
   }, [data?.tickets, data?.ticketZeny]);
 
@@ -151,35 +151,26 @@ export function Calculator() {
 
   useEffect(() => {
     const lastModified = data?.lastModified;
-    if (!lastModified || !['rops', 'ticketZeny'].includes(lastModified)) return;
-    buyByRops();
-  }, [data?.lastModified, data?.ticketZeny, data?.rops]);
-
-  useEffect(() => {
-    const lastModified = data?.lastModified;
-    if (!lastModified || !['wp', 'ticketZeny'].includes(lastModified)) return;
-    buyByWp();
-  }, [data?.lastModified, data?.ticketZeny, data?.wp]);
-
-  useEffect(() => {
-    const lastModified = data?.lastModified;
-    if (!lastModified || !['tickets', 'ticketZeny'].includes(lastModified))
-      return;
-    buyByTickets();
-  }, [data?.lastModified, data?.ticketZeny, data?.tickets]);
-
-  useEffect(() => {
-    const lastModified = data?.lastModified;
-    if (!lastModified || !['money', 'ticketZeny'].includes(lastModified))
-      return;
-    buyByMoney();
-  }, [data?.lastModified, data?.ticketZeny, data?.money]);
-
-  useEffect(() => {
-    const lastModified = data?.lastModified;
-    if (!lastModified || !['zeny', 'ticketZeny'].includes(lastModified)) return;
-    buyByZeny();
-  }, [data?.lastModified, data?.ticketZeny, data?.zeny]);
+    switch (lastModified) {
+      case 'rops':
+        buyByRops();
+        break;
+      case 'wp':
+        buyByWp();
+        break;
+      case 'tickets':
+        buyByTickets();
+        break;
+      case 'money':
+        buyByMoney();
+        break;
+      case 'zeny':
+        buyByZeny();
+        break;
+      default:
+        break;
+    }
+  }, [data, buyByMoney, buyByRops, buyByTickets, buyByWp, buyByZeny]);
 
   return (
     <Main>
