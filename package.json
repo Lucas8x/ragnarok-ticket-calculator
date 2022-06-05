@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "start http://localhost:3001 && next dev -p 3001",
-    "build": "next build",
     "start": "start http://localhost:3001 && next start -p 3001",
+    "build": "next build",
     "lint": "next lint"
   },
   "dependencies": {
