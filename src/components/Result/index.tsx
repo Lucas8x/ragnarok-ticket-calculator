@@ -1,12 +1,22 @@
-import { useEffect } from 'react';
 import { IFormData } from '../../interfaces';
 import { TableItem } from '../TableItem';
 import { Container, Title, LastModified, Table } from './styles';
 
-//const CalculatedBy = {};
+interface ICalculatedBy {
+  [key: string]: string;
+}
+
+const CalculatedBy: ICalculatedBy = {
+  rops: 'ROPS',
+  wp: 'WP',
+  tickets: 'Número de Tickets',
+  money: 'Preço do WP',
+  zeny: 'Zeny',
+  ticketZeny: 'Valor do Ticket',
+};
 
 interface ResultTableProps {
-  result?: any;
+  result: IFormData;
   lastModified?: string;
 }
 
@@ -16,6 +26,8 @@ const moneyFormatter = new Intl.NumberFormat('pt-BR', {
 });
 
 export function ResultTable({ result, lastModified }: ResultTableProps) {
+  const calculatedBy = lastModified ? CalculatedBy[lastModified] : lastModified;
+
   const zeny =
     result?.zeny &&
     `${result.zeny}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + 'z';
@@ -25,8 +37,8 @@ export function ResultTable({ result, lastModified }: ResultTableProps) {
       <Title>Resultados</Title>
 
       <LastModified>
-        {lastModified
-          ? `Calculando por ${lastModified}`
+        {calculatedBy
+          ? `Calculado pelo ${calculatedBy}`
           : 'Porfavor insira algum dos dados ao lado.'}
       </LastModified>
 

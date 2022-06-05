@@ -21,14 +21,13 @@ export function Form({ onChangeInputs, error, onClear }: FormProps) {
   const [ticketZeny, setTicketZeny] = useState('');
 
   function clearInputs() {
-    console.log('limpando');
     setRops('');
     setWp('');
     setTickets('');
     setMoney('');
     setZeny('');
     setTicketZeny('');
-    onClear();
+    onClear && onClear();
   }
 
   useEffect(() => {
@@ -65,8 +64,8 @@ export function Form({ onChangeInputs, error, onClear }: FormProps) {
       <Input
         id='rops'
         type='number'
-        step={'1000'}
-        min={'0'}
+        step='1000'
+        min='0'
         placeholder='rops'
         label='Quantos ROPs deseja comprar?'
         onChange={(e) => {
@@ -77,8 +76,8 @@ export function Form({ onChangeInputs, error, onClear }: FormProps) {
       <Input
         id='wp'
         type='number'
-        step={'1000'}
-        min={'0'}
+        step='1000'
+        min='0'
         placeholder='wp'
         label='Quantos WP deseja comprar?'
         onChange={(e) => {
@@ -89,8 +88,9 @@ export function Form({ onChangeInputs, error, onClear }: FormProps) {
       <Input
         id='tickets'
         type='number'
-        step={'1'}
-        min={'0'}
+        step='1'
+        min='0'
+        pattern='[0-9]'
         placeholder='tickets'
         label='Quantos tickets deseja comprar?'
         onChange={(e) => {
@@ -102,7 +102,7 @@ export function Form({ onChangeInputs, error, onClear }: FormProps) {
         id='money'
         type='number'
         step='any'
-        min={'0'}
+        min='0'
         placeholder='R$'
         label='Quantos R$ deseja gastar?'
         onChange={(e) => {
@@ -115,7 +115,7 @@ export function Form({ onChangeInputs, error, onClear }: FormProps) {
           id='zeny'
           type='number'
           step='any'
-          min={'0'}
+          min='0'
           placeholder='zeny'
           label='Quantos zenys você pretende ganhar?'
           onChange={(e) => {
@@ -127,7 +127,7 @@ export function Form({ onChangeInputs, error, onClear }: FormProps) {
           id='ticketZeny'
           type='number'
           step='1'
-          min={'0'}
+          min='0'
           placeholder='ticket -> zeny'
           label='Quanto está valendo o ticket em zeny?'
           onChange={(e) => {
