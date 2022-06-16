@@ -5,7 +5,7 @@ import {
   WP_TO_ROPS,
   WP_TO_ROPS_BONUS_PERCENT,
   PIN_BONUS,
-} from '../data/values.json';
+} from '../data';
 
 export function getWpByAmount(wp: number): Array<IWpPrices> {
   const filteredWp = WP_PRICES.filter((item: IWpPrices) => item.wp >= wp);

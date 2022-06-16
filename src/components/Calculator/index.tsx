@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { Form } from '../Form';
 import { ResultTable } from '../Result';
 import { IFormData } from '../../interfaces';
-import { TICKET_PRICE, WP_TO_ROPS } from '../../data/values.json';
+import { TICKET_PRICE, WP_TO_ROPS } from '../../data';
 import {
   getWpByAmount,
   getWpByPrice,
