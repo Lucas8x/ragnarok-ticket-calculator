@@ -7,7 +7,7 @@ import { Container, Title } from './styles';
 export function Header() {
   return (
     <Container>
-      <Image src={Ticket} alt='ticket item sprite' width={30} height={20} />
+      <Image src={Ticket} alt='ticket item sprite' width={30} height={30} />
       <Title>Ragnarok Ticket Calculator</Title>
     </Container>
   );
